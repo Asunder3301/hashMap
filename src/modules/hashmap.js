@@ -49,19 +49,16 @@ export class HashMap {
 
   get(key) {
     const index = this.hash(key);
+    const linkedlist = this.buckets[index];
 
-    if (index < 0 || index >= this.buckets.length) {
-      throw new Error("Trying to access index out of bounds.");
-    }
-
-    const bucket = this.buckets[index];
-
-    for (let i = 0; i < bucket.length; i++) {
-      const [storedKey, storedVal] = bucket[i];
-
+    let temp = linkedlist.head;
+    while (temp) {
+      const [storedKey, storedVal] = temp.value;
       if (storedKey === key) {
         return storedVal;
       }
+
+      temp = temp.nextNode;
     }
 
     return null;
