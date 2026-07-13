@@ -161,4 +161,22 @@ export class HashMap {
 
     return entries;
   }
+
+  resize() {
+    const old = this.buckets;
+
+    this.capacity *= 2;
+    this.size = 0;
+    this.buckets = Array.from({ length: this.capacity }, () => []);
+
+    //Loop through old buckets/rehash old data
+    for (let i = 0; i < old.length; i++) {
+      const bucket = old[i];
+      for (let j = 0; j < bucket.length; j++) {
+        const [key, value] = bucket[j];
+
+        this.set(key, value);
+      }
+    }
+  }
 }
