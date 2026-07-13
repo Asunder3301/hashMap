@@ -83,8 +83,19 @@ export class LinkedList {
       return;
     }
 
-    const removed = this.head.value;
-    this.head = this.head.nextNode;
+    if (!this.head.nextNode) {
+      const removed = this.head.value;
+      this.head = null;
+      return removed;
+    }
+
+    let temp = this.head;
+    while (temp.nextNode.nextNode) {
+      temp = temp.nextNode();
+    }
+
+    const removed = temp.nextNode.value;
+    temp.nextNode = null;
 
     return removed;
   }
