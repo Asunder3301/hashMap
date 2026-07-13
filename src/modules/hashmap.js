@@ -119,11 +119,11 @@ export class HashMap {
   keys() {
     const keys = [];
 
-    this.buckets.forEach((bucket) => {
-      if (bucket) {
-        for (const pair of bucket) {
-          keys.push(pair[0]);
-        }
+    this.buckets.forEach((linkedlist) => {
+      let temp = linkedlist.head;
+      while (temp) {
+        keys.push(temp.value[0]);
+        temp = temp.nextNode;
       }
     });
 
