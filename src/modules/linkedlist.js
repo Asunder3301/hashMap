@@ -142,7 +142,7 @@ export class LinkedList {
       throw new RangeError("Index is out of range");
     }
 
-    previous.newNode = current.newNod;
+    previous.newNode = current.newNode;
   }
 
   insertAt(index, ...values) {
