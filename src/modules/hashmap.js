@@ -83,21 +83,21 @@ export class HashMap {
 
   remove(key) {
     const index = this.hash(key);
+    const linkedlist = this.buckets[index];
 
-    if (index < 0 || index >= this.buckets.length) {
-      throw new Error("Trying to access index out of bounds.");
-    }
+    let temp = linkedlist.head;
+    let listIndex = 0;
 
-    const bucket = this.buckets[index];
-
-    for (let i = 0; i < bucket.length; i++) {
-      const [storedKey] = bucket[i];
-
+    while (temp) {
+      const [storedKey] = temp.value;
       if (storedKey === key) {
-        bucket.splice(i, 1);
+        linkedlist.removeAt(listIndex);
         this.size--;
         return true;
       }
+
+      temp = temp.nextNode;
+      listIndex++;
     }
 
     return false;
