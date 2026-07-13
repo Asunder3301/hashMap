@@ -133,4 +133,18 @@ export class HashMap {
 
     return keys;
   }
+
+  values() {
+    const values = [];
+
+    this.buckets.forEach((bucket) => {
+      if (bucket) {
+        for (const pair of bucket) {
+          values.push(pair[1]);
+        }
+      }
+    });
+
+    return values;
+  }
 }
