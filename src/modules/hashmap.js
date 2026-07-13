@@ -104,12 +104,7 @@ export class HashMap {
   }
 
   length() {
-    let count = 0;
-    this.buckets.forEach((bucket) => {
-      count += bucket.length;
-    });
-
-    return count;
+    return this.size;
   }
 
   clear() {
