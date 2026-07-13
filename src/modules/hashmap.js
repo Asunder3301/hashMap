@@ -133,11 +133,11 @@ export class HashMap {
   values() {
     const values = [];
 
-    this.buckets.forEach((bucket) => {
-      if (bucket) {
-        for (const pair of bucket) {
-          values.push(pair[1]);
-        }
+    this.buckets.forEach((linkedlist) => {
+      let temp = linkedlist.head;
+      while (temp) {
+        values.push(temp.value[1]);
+        temp = temp.nextNode;
       }
     });
 
