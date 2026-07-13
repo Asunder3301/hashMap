@@ -20,13 +20,15 @@ export class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
+
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bounds.");
     }
+
     const bucket = this.buckets[index];
 
-    for (let i = 0; i < this.buckets.length; i++) {
-      const pair = this.buckets[i];
+    for (let i = 0; i < bucket.length; i++) {
+      const pair = bucket[i];
 
       if (pair[0] === key) {
         pair[1] = value;
