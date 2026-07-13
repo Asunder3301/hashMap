@@ -25,23 +25,20 @@ export class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
+    const linkedlist = this.buckets[index];
 
-    if (index < 0 || index >= this.buckets.length) {
-      throw new Error("Trying to access index out of bounds.");
-    }
-
-    const bucket = this.buckets[index];
-
-    for (let i = 0; i < bucket.length; i++) {
-      const pair = bucket[i];
-
-      if (pair[0] === key) {
-        pair[1] = value;
+    let temp = linkedlist.head;
+    while (temp) {
+      const [storedKey] = temp.value;
+      if (storedKey === key) {
+        temp.value[1] = value;
         return;
       }
+
+      temp = temp.nextNode;
     }
 
-    bucket.push([key, value]);
+    linkedlist.append([key, value]);
     this.size++;
 
     //Resize the map if the size is greater than the load
