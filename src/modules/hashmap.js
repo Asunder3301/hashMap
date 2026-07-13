@@ -115,4 +115,22 @@ export class HashMap {
 
     return count;
   }
+
+  clear() {
+    this.buckets = new Array(this.size);
+  }
+
+  keys() {
+    const keys = [];
+
+    this.buckets.forEach((bucket) => {
+      if (bucket) {
+        for (const pair of bucket) {
+          keys.push(pair[0]);
+        }
+      }
+    });
+
+    return keys;
+  }
 }
