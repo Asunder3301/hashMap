@@ -110,7 +110,10 @@ export class HashMap {
   clear() {
     this.capacity = 16;
     this.size = 0;
-    this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.buckets = Array.from(
+      { length: this.capacity },
+      () => new LinkedList()
+    );
   }
 
   keys() {
