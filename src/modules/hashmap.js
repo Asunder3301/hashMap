@@ -147,4 +147,18 @@ export class HashMap {
 
     return values;
   }
+
+  entries() {
+    const entries = [];
+
+    this.buckets.forEach((bucket) => {
+      if (bucket) {
+        for (const [key, value] of bucket) {
+          entries.push([key, value]);
+        }
+      }
+    });
+
+    return entries;
+  }
 }
