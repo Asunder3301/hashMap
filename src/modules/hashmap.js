@@ -160,18 +160,20 @@ export class HashMap {
 
   resize() {
     const old = this.buckets;
-
     this.capacity *= 2;
     this.size = 0;
-    this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.buckets = Array.from(
+      { length: this.capacity },
+      () => new LinkedList()
+    );
 
-    //Loop through old buckets/rehash old data
-    for (let i = 0; i < old.length; i++) {
-      const bucket = old[i];
-      for (let j = 0; j < bucket.length; j++) {
-        const [key, value] = bucket[j];
-
+    //Loop through old linked list nodes to rehash data
+    for (let linkedlist of old) {
+      let temp = linkedlist.head;
+      while (temp) {
+        const [key, value] = temp.value;
         this.set(key, value);
+        temp.nextNode;
       }
     }
   }
