@@ -173,7 +173,7 @@ export class HashMap {
       while (temp) {
         const [key, value] = temp.value;
         this.set(key, value);
-        temp.nextNode;
+        temp = temp.nextNode;
       }
     }
   }
