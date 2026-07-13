@@ -147,11 +147,11 @@ export class HashMap {
   entries() {
     const entries = [];
 
-    this.buckets.forEach((bucket) => {
-      if (bucket) {
-        for (const [key, value] of bucket) {
-          entries.push([key, value]);
-        }
+    this.buckets.forEach((linkedlist) => {
+      let temp = linkedlist.head;
+      while (temp) {
+        entries.push([temp.value[0], temp.value[1]]);
+        temp = temp.nextNode;
       }
     });
 
